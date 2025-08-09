@@ -36,3 +36,4 @@ jobs:
       environmentName: myget
     secrets:
       feedAPIKey: ${{ secrets.MYGET_CI_API_KEY }}
+    if: github.event_name == 'push'

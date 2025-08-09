@@ -33,6 +33,7 @@ jobs:
       environmentName: nuget
     secrets:
       feedAPIKey: ${{ secrets.NUGET_API_KEY }}
+    if: github.event_name == 'push'
     
   publish_docs:
     needs: [publish_package, generate_docs]
