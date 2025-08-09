@@ -20,8 +20,8 @@ permissions:
   contents: read
 
 jobs:
-  call_buildAndPublish:
-    uses: ./.github/workflows/buildAndPublish.yml
+  build:
+    uses: ./.github/workflows/build.yml
     with:
       feedUrl: https://www.myget.org/F/wechooz/api/v3/index.json
       forRelease: false
@@ -30,3 +30,12 @@ jobs:
 
   generate_docs:
     uses: ./.github/workflows/generateDocs.yml
+
+  publish_package:
+    needs: build
+    uses: ./.github/workflows/publish.yml
+    with:
+      feedUrl: https://www.myget.org/F/wechooz/api/v3/index.json
+      environmentName: myget
+    secrets:
+      feedAPIKey: ${{ secrets.MYGET_CI_API_KEY }}
