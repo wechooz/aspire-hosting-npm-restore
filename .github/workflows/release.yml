@@ -9,13 +9,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  DOTNET_VERSION: "10.0.x"
-
-permissions:
-  checks: write
-  contents: read
-
 jobs:
   build:
     uses: ./.github/workflows/build.yml
